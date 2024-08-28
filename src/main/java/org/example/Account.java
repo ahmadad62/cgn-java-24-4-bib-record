@@ -14,6 +14,23 @@ public class Account {
         this.client = client;
     }
 
+    public void deposit(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Deposit amount must be positive");
+        }
+        this.balance = this.balance.add(amount);
+    }
+
+    public void withdraw(BigDecimal amount) {
+    if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+        throw new IllegalArgumentException("Withdrawal amount must be positive");
+    }
+    if (this.balance.compareTo(amount) < 0) {
+        throw new IllegalStateException("Insufficient funds");
+    }
+    this.balance = this.balance.subtract(amount);
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }
