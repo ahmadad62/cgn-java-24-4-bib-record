@@ -2,8 +2,7 @@ package org.example;
 
 import java.math.BigDecimal;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
     StudentRecord studentRecord=new StudentRecord("1a12","Thomas","Bauer",23);
@@ -15,8 +14,32 @@ public class Main {
     ClientRecord client3=new ClientRecord("Ahmed","God","3");
     ClientRecord client4=new ClientRecord("Ferdinand","Speer","4");
 
-    Account account=new Account("a123",new BigDecimal("123.333"),client1);
-        System.out.println(account.getBalance());
-        System.out.println(account);
-    }
-}
+//    Account account1=new Account("a123",new BigDecimal("123.333"),client1);
+//        System.out.println(account1.getBalance());
+//        System.out.println(account1);
+//
+//
+//    Account account2=new Account("a123",new BigDecimal("123.333"),client2);
+//        System.out.println(account2.getBalance());
+//        System.out.println(account2);
+//}
+
+    BankService bankService=new BankService();
+
+        String account1 = bankService.openAccount(client1);
+        String account2 = bankService.openAccount(client2);
+        String account3 = bankService.openAccount(client3);
+        String account4 = bankService.openAccount(client4);
+
+
+
+        // Step 4: Attempt to transfer money (this will likely fail due to insufficient funds)
+        try {
+            String result = bankService.TransferService(account1, account2, BigDecimal.valueOf(100));
+            System.out.println("Transfer result: " + result);
+        } catch (Exception e) {
+            System.out.println("Transfer failed: " + e.getMessage());
+        }
+
+
+}}
